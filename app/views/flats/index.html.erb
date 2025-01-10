@@ -2,6 +2,7 @@
 
 <h1>Flats</h1>
 
+<!--
 <div id="flats">
   <% @flats.each do |flat| %>
     <%= render flat %>
@@ -10,5 +11,7 @@
     </p>
   <% end %>
 </div>
-
+-->
 <%= link_to "New flat", new_flat_path %>
+
+<div data-map-mapbox-token-value="<%= ENV['MAPBOX_TOKEN'] %>" style="width: 1080px; height: 720px;" data-controller="map"></div>
