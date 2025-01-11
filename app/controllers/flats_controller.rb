@@ -6,7 +6,7 @@ class FlatsController < ApplicationController
     @flats = Flat.all
 
     # We will set variables to get all longitudes and latitudes for flats in JSON
-    @markers = @flats.geocoded.map do |flat|
+    @markers = @flats.near('Tokyo').geocoded.map do |flat|
       {
         lat: flat.latitude,
         lng: flat.longitude

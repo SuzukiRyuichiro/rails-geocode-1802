@@ -14,4 +14,4 @@
 -->
 <%= link_to "New flat", new_flat_path %>
 
-<div data-map-mapbox-token-value="<%= ENV['MAPBOX_TOKEN'] %>" style="width: 1080px; height: 720px;" data-controller="map"></div>
+<div data-map-mapbox-token-value="<%= ENV['MAPBOX_TOKEN'] %>"  data-map-markers-value="<%= @markers.to_json %>" style="width: 1080px; height: 720px;" data-controller="map"></div>
