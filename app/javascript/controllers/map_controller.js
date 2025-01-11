@@ -23,7 +23,17 @@ export default class extends Controller {
     const markers = this.markersValue;
     // Iterate over each marker coordinates, and add a marker to the map
     markers.forEach((marker) => {
-      new mapboxgl.Marker().setLngLat(marker).addTo(this.map);
+      const popup = new mapboxgl.Popup({ offset: 25 }).setHTML(
+        marker.popupWindowHTML,
+      );
+
+      const customMarker = document.createElement("div");
+      customMarker.innerHTML = marker.markerHTML;
+
+      new mapboxgl.Marker(customMarker)
+        .setLngLat(marker)
+        .setPopup(popup)
+        .addTo(this.map);
     });
   }
 
@@ -35,8 +45,6 @@ export default class extends Controller {
       bounds.extend(marker);
     });
 
-    this.map.fitBounds(bounds, {
-      padding: 20,
-    });
+    this.map.fitBounds(bounds, { padding: 70, maxZoom: 15, duration: 0 });
   }
 }

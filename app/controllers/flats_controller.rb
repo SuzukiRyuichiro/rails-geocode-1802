@@ -9,7 +9,9 @@ class FlatsController < ApplicationController
     @markers = @flats.near('Tokyo').geocoded.map do |flat|
       {
         lat: flat.latitude,
-        lng: flat.longitude
+        lng: flat.longitude,
+        popupWindowHTML: render_to_string(partial: 'info_window', locals: { flat: flat }),
+        markerHTML: render_to_string(partial: "marker")
       }
     end
   end
