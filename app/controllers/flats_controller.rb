@@ -1,12 +1,12 @@
 class FlatsController < ApplicationController
-  before_action :set_flat, only: %i[ show edit update destroy ]
+  before_action :set_flat, only: %i[show edit update destroy]
 
   # GET /flats
   def index
     @flats = Flat.all
 
     # We will set variables to get all longitudes and latitudes for flats in JSON
-    @markers = @flats.near('Tokyo').geocoded.map do |flat|
+    @markers = @flats.geocoded.map do |flat|
       {
         lat: flat.latitude,
         lng: flat.longitude,
@@ -56,13 +56,14 @@ class FlatsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_flat
-      @flat = Flat.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def flat_params
-      params.require(:flat).permit(:address, :name)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_flat
+    @flat = Flat.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def flat_params
+    params.require(:flat).permit(:address, :name)
+  end
 end
