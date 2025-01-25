@@ -1,5 +1,6 @@
 import { Controller } from "@hotwired/stimulus";
 import mapboxgl from "mapbox-gl";
+import MapboxGeocoder from "@mapbox/mapbox-gl-geocoder";
 
 // Connects to data-controller="map"
 export default class extends Controller {
@@ -13,12 +14,20 @@ export default class extends Controller {
 
     this.map = new mapboxgl.Map({
       container: this.element,
-      style: "mapbox://styles/mapbox/streets-v10",
+      style: "mapbox://styles/scooter-scooter/cm1gfg3h206ry01pq1rsf9ko2",
     });
 
     // Add the makers
     this.#addMarkersToMap();
     this.#fitMapToMarkers();
+
+    // Add the geocoding control
+    this.map.addControl(
+      new MapboxGeocoder({
+        accessToken: mapboxgl.accessToken,
+        mapboxgl: mapboxgl,
+      })
+    );
   }
 
   #addMarkersToMap() {
