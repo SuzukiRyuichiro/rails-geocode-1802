@@ -26,9 +26,13 @@ export default class extends Controller {
     this.markersValue.forEach((marker) => {
       // create popup
       const popup = new mapboxgl.Popup().setHTML(marker.info_window_html); // Add this
-      // create a pin
+
+      // create a div that is going to be the pin
+      const customMarker = document.createElement("div");
+      customMarker.innerHTML = marker.marker_html;
+
       // Add that pin to the map
-      new mapboxgl.Marker()
+      new mapboxgl.Marker(customMarker)
         .setLngLat([marker.lng, marker.lat])
         .setPopup(popup)
         .addTo(this.map);
