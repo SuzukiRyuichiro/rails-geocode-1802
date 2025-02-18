@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2025_01_25_001417) do
+ActiveRecord::Schema[7.1].define(version: 2025_02_18_120450) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -23,4 +23,13 @@ ActiveRecord::Schema[7.1].define(version: 2025_01_25_001417) do
     t.float "longitude"
   end
 
+  create_table "rooms", force: :cascade do |t|
+    t.bigint "flat_id", null: false
+    t.string "room_numer"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["flat_id"], name: "index_rooms_on_flat_id"
+  end
+
+  add_foreign_key "rooms", "flats"
 end
