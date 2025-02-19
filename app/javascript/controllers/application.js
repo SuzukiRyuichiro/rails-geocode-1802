@@ -1,9 +1,11 @@
-import { Application } from "@hotwired/stimulus"
+import { Application } from "@hotwired/stimulus";
+import Sortable from "@stimulus-components/sortable";
 
-const application = Application.start()
+const application = Application.start();
+application.register("sortable", Sortable);
 
 // Configure Stimulus development experience
-application.debug = false
-window.Stimulus   = application
+application.debug = false;
+window.Stimulus = application;
 
-export { application }
+export { application };

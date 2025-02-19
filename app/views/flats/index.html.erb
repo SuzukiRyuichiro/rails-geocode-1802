@@ -4,4 +4,7 @@
 data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>"
 data-map-markers-value="<%= @markers.to_json %>"
 ></div>
+<% @flats.each do |flat| %>
+  <%= link_to flat.name, flat_path(flat) %>
+<% end %>
 <%= link_to "New flat", new_flat_path %>

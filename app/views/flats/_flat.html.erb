@@ -3,10 +3,13 @@
     <strong>Name:</strong>
     <%= flat.name %>
   </p>
-
   <p>
     <strong>Address:</strong>
     <%= flat.address %>
   </p>
-
+  <ul data-controller="sortable" data-sortable-animation-value="150">
+    <% flat.rooms.each do |room|  %>
+      <li><%= room.room_numer %></li>
+    <% end %>
+  </ul>
 </div>
